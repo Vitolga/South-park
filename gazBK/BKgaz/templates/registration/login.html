@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap %}
+{% load static %}
+{% block content %}
+
+<h2>Login</h2>
+
+<p>
+  Login with your <em>@hashedin.com</em> email address.
+</p>
+<div>
+    <a href="/login/google-oauth2/"><img width=200 src="{% static "login-google.png" %}"/></a>
+</div>
+
+{% endblock %}

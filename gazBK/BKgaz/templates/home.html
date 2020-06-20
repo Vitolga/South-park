@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block title %}Charcha{% endblock %}
+
+{% block content %}
+{% spaceless %}
+{% for post in posts %}
+<div class="post-envelope">
+  {% include "partials/post-vote-control.html" with obj_type='posts' obj=post %}
+  <div class="post">
+    <div class="post-title">
+      <h3><a href="{% url 'discussion' post.id %}">{{ post.title }}</a></h3>
+    </div>
+    <div class="post-line-2">
+      <div class="post-score">
+          by {{ post.author }} |
+          {{ post.num_comments }} comment{{ post.num_comments|pluralize }} |
+          {{ post.score }} point{{ post.score | pluralize }} | 
+          {{ post.submission_time | naturalday }}
+          {% if request.user.is_staff %}
+          | <a href="{% url 'admin:discussions_post_change' post.id %}">manage</a>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endspaceless %}
+{% endblock %}

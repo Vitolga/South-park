@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap %}
+{% block title %}Edit Comment{% endblock %}
+
+{% block content %}
+<h3>Edit Comment:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form | bootstrap }}
+    <trix-editor class="trix-content" input="id_html"></trix-editor>
+    <input type="submit" value="Edit Comment" />
+</form>
+
+{% endblock %}
